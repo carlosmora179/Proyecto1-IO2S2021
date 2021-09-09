@@ -8,8 +8,8 @@ Para ejecutar el codigo es necesario correr el siguiente comando dentro de la ca
 $python3 simplex.py [nombre de archivo]
 ~~~
 
-Donde [nombre de archivo] es sustituido por elnombre del archivo con el problema a resolver segun el formato especificado.\
-Ejemplo:
+Donde [nombre de archivo] es sustituido por el nombre del archivo con el problema a resolver segun el formato especificado.\
+Ejemplo de archivo:
 ~~~
 0,max,2,3
 3,5
