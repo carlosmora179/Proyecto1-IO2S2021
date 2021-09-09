@@ -321,7 +321,7 @@ def operaciones_tabulares():
                 
                 print("\nNo hay sluciones multiples")
                 salida = salida +("\nNo hay sluciones multiples")
-                if(degenerada):
+                if(degenerada and  segundo_U != 0):
 
                     print("\nU max = ",segundo_U)
                     salida = salida +' '.join(map(str, ("\nU max = ",segundo_U)))
