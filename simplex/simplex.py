@@ -320,7 +320,7 @@ def operaciones_tabulares():
             else:
                 
                 print("\nNo hay soluciones multiples la respuesta correcta es la primera desplegada")
-                salida = salida +("\nNo hay sluciones multiples")
+                salida = salida +("\nNo hay sluciones multiples la respuesta correcta es la primera desplegada")
                 if(degenerada and  segundo_U != 0):
 
                     print("\nU max = ",segundo_U)
