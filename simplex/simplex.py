@@ -319,7 +319,7 @@ def operaciones_tabulares():
                 salida = salida +("\nEl problema tiene multiples soluciones listadas anteriormente")
             else:
                 
-                print("\nNo hay sluciones multiples")
+                print("\nNo hay soluciones multiples la respuesta correcta es la primera desplegada")
                 salida = salida +("\nNo hay sluciones multiples")
                 if(degenerada and  segundo_U != 0):
 
