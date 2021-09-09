@@ -7,7 +7,7 @@ lista_lineas = None
 variables_de_decision = 0
 ecuacion = []
 filas,columnas,saliente,entrante,pivote = 0,0,0,0,-1
-
+degenerada = False
 """
 Funcion:
 Parsea los datos del archivo txt, y crea una tabla
@@ -146,7 +146,7 @@ Setea a las variables globales los datos de columna entrante, fila saliente
 y pivote.
 """
 def entrante_saliente_pivote(tabla, multiples, posiciones_finales):
-    global entrante,saliente,pivote
+    global entrante,saliente,pivote,salida,degenerada
     """Entrante el menor de la fila U"""
     if(multiples):
         entrante = multiples_soluciones__obtener_indice(tabla,posiciones_finales)
@@ -167,6 +167,10 @@ def entrante_saliente_pivote(tabla, multiples, posiciones_finales):
                 pivote = filas[entrante]
                 saliente = contador
                 resultado_anterior = resultado
+            if resultado == 0 :
+                degenerada = True
+                print("\nla solucion es degenerada en fila: ",contador)
+                salida = salida + ' '.join(map(str,("\nla solucion es degenerada en fila: ",contador)))
 """
 Funcion:
 Verifica si un problema es no acotado
@@ -260,7 +264,7 @@ Salida:
 Problema del archivo resuelto
 """
 def operaciones_tabulares():
-    global entrante, saliente, pivote,salida
+    global entrante, saliente, pivote,salida,degenerada
     tabla = crear_tabla(lista_lineas)
     optimo = prueba_optimalidad(tabla)
     contadorMultiples = 1
@@ -317,8 +321,14 @@ def operaciones_tabulares():
                 
                 print("\nNo hay sluciones multiples")
                 salida = salida +("\nNo hay sluciones multiples")
-                print("\nU max = ",primer_U)
-                salida = salida +' '.join(map(str, ("\nU max = ",primer_U)))
+                if(degenerada):
+
+                    print("\nU max = ",segundo_U)
+                    salida = salida +' '.join(map(str, ("\nU max = ",segundo_U)))
+                else:
+                    print("\nU max = ",primer_U)
+                    salida = salida +' '.join(map(str, ("\nU max = ",primer_U)))
+                
         
 
 """
