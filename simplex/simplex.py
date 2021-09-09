@@ -249,8 +249,12 @@ def calcular_u(posiciones_finales,tabla):
         variables_de_decision -=1
     
     variables_de_decision = variables_de_decision_aux
-    print("ecuacion: ",ecuacion,"\ respuesta: ",respuesta)
-    salida = salida + ' '.join(map(str,("\necuacion: ",ecuacion,"\ respuesta: ",respuesta)))
+    salida = salida +' '.join(map(str, ("\norden de ecuacion es [X1,X2...Xn]")))
+    salida = salida +' '.join(map(str, ("\norden de respuesta es [X1,X2...Xn]")))
+    print("\norden de ecuacion es [X1,X2...Xn]")
+    print("\norden de respuesta es [X1,X2...Xn]")
+    print("\necuacion: ",ecuacion,"| respuesta: ",respuesta)
+    salida = salida + ' '.join(map(str,("\necuacion: ",ecuacion,"| respuesta: ",respuesta)))
     U = sum(ecuacion*respuesta)
     return U
 
@@ -320,7 +324,7 @@ def operaciones_tabulares():
             else:
                 
                 print("\nNo hay soluciones multiples la respuesta correcta es la primera desplegada")
-                salida = salida +("\nNo hay sluciones multiples la respuesta correcta es la primera desplegada")
+                salida = salida +("\nNo hay soluciones multiples la respuesta correcta es la primera desplegada")
                 if(degenerada and  segundo_U != 0):
 
                     print("\nU max = ",segundo_U)
