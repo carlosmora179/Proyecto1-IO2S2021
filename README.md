@@ -1,7 +1,7 @@
-**Proyecto1**
-**Intituto tecnologico de Costa Rica**
-**Investigacion de operaciones**
-**IS 2021**
+**Proyecto1**\
+**Intituto tecnologico de Costa Rica**\
+**Investigacion de operaciones**\
+**IS 2021**\
 # Instrucciones de ejecucion
 Para ejecutar el codigo es necesario correr el siguiente comando.
 ~~~
