@@ -18,6 +18,11 @@ Parametros:
 Salida:
 Tabla inicial del metodo
 """
+"""
+corregir problema con la variables de holgura comenzar una columna +1
+"""
+
+
 def crear_tabla(lista_lineas):
     i,j=0,0
     global columnas, filas, variables_de_decision
@@ -25,6 +30,7 @@ def crear_tabla(lista_lineas):
     variables_de_decision = int(linea[2])
     filas = int(linea[3]) + 1
     columnas = int(linea[2]) + int(linea[3]) + 1
+    columnaActual = int(linea[2])
     tabla = np.zeros((filas, columnas))
     lista_lineas.pop(0)
     while i < len(lista_lineas):
@@ -33,15 +39,16 @@ def crear_tabla(lista_lineas):
             además los guardo en variables globales para luego dar el resultado final"""
         if i == 0:
             for j in range(len(linea)):
-                tabla[i,j]=int(linea[j])*-1
-                ecuacion.append(int(linea[j]))
+                tabla[i,j]=float(linea[j])*-1
+                ecuacion.append(float(linea[j]))
         else:
             """parseo el resto de lineas"""
             while j < len(linea):
                 if linea[j] == '<=':
                     j+=1
                     tabla[i,columnas-1]=float(linea[j])
-                    tabla[i, i + 1] = 1
+                    tabla[i, columnaActual] = 1
+                    columnaActual +=1
                 else:
                     
                     tabla[i,j]=float(linea[j])
@@ -167,10 +174,16 @@ def entrante_saliente_pivote(tabla, multiples, posiciones_finales):
                 pivote = filas[entrante]
                 saliente = contador
                 resultado_anterior = resultado
+            elif resultado == resultado_anterior:
+                print("\nexisten resultados iguales para saliente")
+                salida = salida + ' '.join(map(str,("\nexisten resultados iguales para saliente")))
             if resultado == 0 :
+                
                 degenerada = True
+
                 print("\nla solucion es degenerada en fila: ",contador)
                 salida = salida + ' '.join(map(str,("\nla solucion es degenerada en fila: ",contador)))
+                break
 """
 Funcion:
 Verifica si un problema es no acotado
@@ -288,7 +301,8 @@ def operaciones_tabulares():
         tabla[saliente]= tabla[saliente] / pivote
         tabla=gaus_jordan(tabla)
         salida = salida +' '.join(map(str, tabla))
-        
+        if degenerada:
+            break
         if multiples:
             posiciones_finales = posiciones_finales[1:]
         
@@ -297,6 +311,7 @@ def operaciones_tabulares():
         if no_acotado :
             print("\nno acotado en columna: ", entrante)
             salida = salida +' '.join(map(str, ("\nno acotado en columna: ", entrante)))
+            break
         elif optimo:
             multiples = multiples_soluciones(tabla,posiciones_finales)
             
