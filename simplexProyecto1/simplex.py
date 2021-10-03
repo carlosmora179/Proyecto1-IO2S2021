@@ -8,6 +8,8 @@ variables_de_decision = 0
 ecuacion = []
 filas,columnas,saliente,entrante,pivote = 0,0,0,0,-1
 degenerada = False
+tipo = 0
+filasArtfcl = []
 """
 Funcion:
 Parsea los datos del archivo txt, y crea una tabla
@@ -23,14 +25,17 @@ corregir problema con la variables de holgura comenzar una columna +1
 """
 
 
-def crear_tabla(lista_lineas):
+def crear_tabla_GranM(lista_lineas):
     i,j=0,0
-    global columnas, filas, variables_de_decision
+    global columnas, filas, variables_de_decision,tipo,filasArtfcl
     linea = list(lista_lineas[0].split(','))
     variables_de_decision = int(linea[2])
+    tipo = 1 if linea[1] == "max" else(2 if linea[1] == "min" else 0)
+    
     filas = int(linea[3]) + 1
     columnas = int(linea[2]) + int(linea[3]) + 1
     columnaActual = int(linea[2])
+    artfclContador = 1
     tabla = np.zeros((filas, columnas))
     lista_lineas.pop(0)
     while i < len(lista_lineas):
@@ -49,6 +54,23 @@ def crear_tabla(lista_lineas):
                     tabla[i,columnas-1]=float(linea[j])
                     tabla[i, columnaActual] = 1
                     columnaActual +=1
+                elif linea[j] == '=':
+                    j+=1
+                    tabla[i,columnas-1]=float(linea[j])
+                    tabla[i, columnaActual+artfclContador] = 1
+                    tabla[0, columnaActual+artfclContador] = 1000000
+                    artfclContador += 1
+                    columnaActual +=1
+                elif linea[j] == '>=':
+                    j+=1
+                    tabla[i,columnas-1]=float(linea[j])
+                    tabla[i, columnaActual] = -1
+                    tabla[i, columnaActual+artfclContador] = 1
+                    tabla[0, columnaActual+artfclContador] = 1000000
+                    artfclContador += 1
+                    columnaActual +=1
+
+
                 else:
                     
                     tabla[i,j]=float(linea[j])
@@ -60,7 +82,9 @@ def crear_tabla(lista_lineas):
     
     return tabla
 
-
+def resolver_gran_m(tabla):
+    vectorMs = []
+    vectorMs.append()
 """
 Funcion:
 Verifica que hayan negativos en la fila U para probar la optimalidad
@@ -72,10 +96,17 @@ Salida:
 True si la solucion es optima o False de lo contrrario
 """
 def prueba_optimalidad(tabla):
-    if (min(tabla[0]) < 0):
-        return False
-    else:
-        return True
+    if( tipo == 1):
+
+        if (min(tabla[0]) < 0):
+            return False
+        else:
+            return True
+    if(tipo == 2):
+        if (max(tabla[0]) > 0):
+            return False
+        else:
+            return True
 """
 Funcion:
 Se encarga de verificar si existen posibles multiples soluciones
@@ -158,7 +189,10 @@ def entrante_saliente_pivote(tabla, multiples, posiciones_finales):
     if(multiples):
         entrante = multiples_soluciones__obtener_indice(tabla,posiciones_finales)
     elif(not multiples):
-        entrante = np.argmin(tabla[0])
+        if(tipo == 1):
+            entrante = np.argmin(tabla[0])
+        elif(tipo == 2):
+            entrante = np.argmax(tabla[0])
     contador=0
     resultado,resultado_anterior=0,0
     """Para el saliente hacer calculos de LD/Entrante"""

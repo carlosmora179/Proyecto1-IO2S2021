@@ -1,0 +1,27 @@
+Tabla inicial: 
+[-3. -1. -3. -9.  0.  0.  0.] [1. 1. 1. 4. 0. 0. 8.] [1. 1. 1. 1. 0. 0. 4.]
+Entrante:  3 
+ Saliente:  1 
+ Pivote:  4.0
+[-0.75  1.25 -0.75  0.    0.    0.   18.  ] [0.25 0.25 0.25 1.   0.   0.   2.  ] [0.75 0.75 0.75 0.   0.   0.   2.  ]
+Entrante:  0 
+ Saliente:  2 
+ Pivote:  0.75
+[ 0.  2.  0.  0.  0.  0. 20.] [0.         0.         0.         1.         0.         0.
+ 1.33333333] [1.         1.         1.         0.         0.         0.
+ 2.66666667]
+ o r d e n   d e   e c u a c i o n   e s   [ X 1 , X 2 . . . X n ]
+ o r d e n   d e   r e s p u e s t a   e s   [ X 1 , X 2 . . . X n ]
+ecuacion:  [3.0, 1.0, 3.0, 9.0] | respuesta:  [2.66666667 0.         0.         1.33333333]
+U max =  20.0
+Entrante:  2 
+ Saliente:  2 
+ Pivote:  1.0
+[ 0.  2.  0.  0.  0.  0. 20.] [0.         0.         0.         1.         0.         0.
+ 1.33333333] [1.         1.         1.         0.         0.         0.
+ 2.66666667]
+ o r d e n   d e   e c u a c i o n   e s   [ X 1 , X 2 . . . X n ]
+ o r d e n   d e   r e s p u e s t a   e s   [ X 1 , X 2 . . . X n ]
+ecuacion:  [3.0, 1.0, 3.0, 9.0] | respuesta:  [2.66666667 0.         2.66666667 0.        ]
+No hay soluciones multiples la respuesta correcta es la primera desplegada
+U max =  20.0
